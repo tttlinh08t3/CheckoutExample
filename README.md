@@ -2,9 +2,31 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.1.3.
 
-## Development server
+## Framework using: Angular version 6.1.2
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Set up development environment: 
+
+	Install Node.js and npm follow by: https://nodejs.org/en/download/
+  
+## How to run project:
+
+1. Go directory of project: cd productCheckout
+
+2. Install angular CLI according to project readme file (version 6.1.3):
+
+	npm install -g @angular/cli@6.1.3
+
+3. Install the repo with npm
+	
+	npm install
+
+4. To run the dev server:
+	
+	ng serve
+
+Nagivate to: http://localhost:4200
+
+The app will automatically reload if you change any of the source files.
 
 ## Code scaffolding
 
