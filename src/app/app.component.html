@@ -1,0 +1,70 @@
+<div *ngIf="productList.length !=0">
+  <h2 class="center">List of products</h2>
+  <div class="product-list" *ngFor="let product of productList">
+      <product-detail class="product"
+        [product]="product"
+        (productCart)=addItem($event)
+        >
+      </product-detail>
+  </div>
+</div>
+
+<div *ngIf="checkout?.productsToCheckout.length !=0">
+<h3 class="checkout-section">Products to checkout</h3>
+  <div class="table">
+          <div class="table-row table-header">
+            <div class="table-row-item">Product</div>
+            <div class="table-row-item">Price</div>
+            <div class="table-row-item">Quantity</div>
+            <div class="table-row-item"></div>
+            <div class="table-row-item">Sub Total</div>
+          </div>
+          <div class="table-row" *ngFor="let productCart of checkout.productsToCheckout">
+            <div class="table-row-item">{{productCart?.item.name}}</div>
+            <div class="table-row-item">{{ '$' + (productCart?.item.price | number:'1.2-2')}}</div>
+            <div class="table-row-item">
+              <span (click)="minusQuantity(productCart)"><i class="fa fa-minus-square-o"></i></span>
+              <span class="quantity">  
+                  {{ productCart.quantity }} 
+              </span> 
+              <span (click)="plusQuantity(productCart)"><i class="fa fa-plus-square-o"></i></span>      
+            </div>
+            <div class="table-row-item">
+                <i class="fa fa-trash fa-lg" (click)="removeItem(productCart)"></i>
+              </div>
+            <div class="table-row-item">
+              <div *ngIf="productCart.totalAfterDiscount != productCart.originalTotal">
+                  <span class="subTotal">{{ '$' + (productCart.totalAfterDiscount | number:'1.2-2')}}</span>
+                  <span class="originalTotal">{{ '$' + (productCart.originalTotal | number:'1.2-2')}}</span>
+              </div>
+              <div *ngIf="productCart.totalAfterDiscount == productCart.originalTotal">
+                  <span class="subTotal">{{ '$' + (productCart.originalTotal | number:'1.2-2')}}</span>
+              </div>
+            </div>
+           
+          </div>
+  </div>
+  
+  <div class="totals-container">
+    <div class="totals-item">
+        <label class="totals-label">Privileged Customers:</label>
+        <div class="totals-value">
+            <select class="form-control" required [ngModel]="selectedCustomer || ''" (ngModelChange)="onChangeCustomer($event)"
+             name="customer" #customer="ngModel">
+                <option [value]="''" [selected]="!selectedCustomer">None</option>
+                <option *ngFor="let c of customers" [value]="c"> {{ c }} </option>
+            </select>
+        </div>
+      </div>
+      <div class="totals-item">
+          <label class="totals-label">Grand Total:</label>
+          <div class="totals-value"><strong>{{ '$' + (checkout.grandTotal | number:'1.2-2') }}</strong></div>
+       </div>  
+       <div class="totals-item">
+        <div class="totals-value">
+        <button class="btn btn-checkout" >Checkout</button>
+       </div>   
+      </div> 
+  </div>
+  </div>
+        

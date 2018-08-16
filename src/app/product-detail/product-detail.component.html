@@ -1,0 +1,12 @@
+<div class="product-detail-container">
+    <div class="product-detail">
+      <!-- <img width="100" src="assets/images/{{product.id}}.png" > -->
+      <p class="letter">{{product.id.charAt(0)}}</p> 
+    </div>
+    <div class="product-des product-detail">
+       <p class="product-name">{{product.name}}</p>
+       <p> {{product.description}} </p>
+       <p class="product-price">{{ '$' + product.price}}</p> 
+    </div>
+      <i class="fa fa-plus fa-lg" (click)="addProduct()"></i>
+</div>
